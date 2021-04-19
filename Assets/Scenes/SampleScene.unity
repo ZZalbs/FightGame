@@ -445,7 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 376ddf7d319d2024eb0fe5a2e6ff8987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballNum: 50
+  ballNum: 49
 --- !u!4 &783982109
 Transform:
   m_ObjectHideFlags: 0
