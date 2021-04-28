@@ -7,11 +7,17 @@ public class ObjectManager : MonoBehaviour
     public static ObjectManager instance;
     public GameObject loading;
 
-    public GameObject circlePrefab;           
+    public GameObject sinPrefab;
+    public GameObject cosPrefab;
 
-    GameObject[] circle;
+    public Transform[] parentObj; // 관리를 위한 임시 부모 오브젝트
+
+    GameObject[] sin;
+    GameObject[] cos;
 
     GameObject[] targetPool; // 풀링할 타겟 설정
+
+    
 
     
 
@@ -20,7 +26,8 @@ public class ObjectManager : MonoBehaviour
         if(instance != this)
             instance = this;
 
-        circle = new GameObject[55];
+        sin = new GameObject[55];
+        cos = new GameObject[55];
 
         StartCoroutine("Generate");
         DontDestroyOnLoad(gameObject);
@@ -31,10 +38,18 @@ public class ObjectManager : MonoBehaviour
     {
         loading.SetActive(true);
         Time.timeScale = 0.0f;
-        for (int i = 0; i < circle.Length; i++)
+        for (int i = 0; i < sin.Length; i++)
         {
-            circle[i] = Instantiate(circlePrefab);
-            circle[i].SetActive(false);
+            sin[i] = Instantiate(sinPrefab);
+            sin[i].transform.SetParent(parentObj[0]);
+            sin[i].SetActive(false);
+            //yield return new WaitForSeconds(0.001f);
+        }
+        for (int i = 0; i < cos.Length; i++)
+        {
+            cos[i] = Instantiate(cosPrefab);
+            cos[i].transform.SetParent(parentObj[1]);
+            cos[i].SetActive(false);
             //yield return new WaitForSeconds(0.001f);
         }
         Time.timeScale = 1.0f;
@@ -47,8 +62,11 @@ public class ObjectManager : MonoBehaviour
     {
         switch(type)
         {
-            case "circle" :
-                targetPool = circle;
+            case "sin" :
+                targetPool = sin;
+                break;
+            case "cos":
+                targetPool = cos;
                 break;
         }
         for (int i = 0; i < targetPool.Length; i++)

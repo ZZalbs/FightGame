@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -7416521326734457020}
   - component: {fileID: 889788369696287134}
   m_Layer: 0
-  m_Name: circle
+  m_Name: Sincircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,8 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f188c42c49dc394f9a0c90c8f1ddcee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentObj: {fileID: 0}
-  incline: 0
 --- !u!120 &889788369696287134
 LineRenderer:
   m_ObjectHideFlags: 0

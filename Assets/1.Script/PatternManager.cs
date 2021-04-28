@@ -10,8 +10,8 @@ public class PatternManager : MonoBehaviour
     List<GameObject> circles;
     public int ballNum; // °ø °³¼ö
 
-    public delegate void sinBulletMove();
-    public static event sinBulletMove sinAction;
+    public delegate void BulletMove();
+    public static event BulletMove Action;
 
 
     // Start is called before the first frame update
@@ -25,11 +25,18 @@ public class PatternManager : MonoBehaviour
     {
         for (int i = 0; i <= ballNum; i++)
         {
-            cTest = ObjectManager.instance.MakeObj("circle");
+            cTest = ObjectManager.instance.MakeObj("cos");
             cTest.transform.position = new Vector2((Mathf.PI*5.0f / ballNum * i) - 8.0f, 0);
             circles.Add(cTest);
             yield return new WaitForSeconds(0.01f);
         }
+        //for (int i = 0; i <= ballNum; i++)
+        //{
+        //    cTest = ObjectManager.instance.MakeObj("cos");
+        //    cTest.transform.position = new Vector2((Mathf.PI * 5.0f / ballNum * i) - 8.0f, 0);
+        //    circles.Add(cTest);
+        //    yield return new WaitForSeconds(0.01f);
+        //}
     }
 
 
@@ -38,12 +45,12 @@ public class PatternManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
             Xsin();
         //if (Input.GetKeyDown(KeyCode.B))
-            
+
     }
 
     void Xsin()
     {
-        sinAction();
+        Action();
     }
 
 
