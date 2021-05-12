@@ -18,18 +18,18 @@ public class PatternManager : MonoBehaviour
     void Start()
     {
         circles = new List<GameObject>();
-        StartCoroutine(Ballmake());
+        StartCoroutine(SinBallmake());
     }
 
-    IEnumerator Ballmake()
+    IEnumerator SinBallmake()
     {
-        for (int i = 0; i <= ballNum; i++)
-        {
-            cTest = ObjectManager.instance.MakeObj("cos");
-            cTest.transform.position = new Vector2((Mathf.PI*5.0f / ballNum * i) - 8.0f, 0);
-            circles.Add(cTest);
-            yield return new WaitForSeconds(0.01f);
-        }
+        //for (int i = 0; i <= ballNum; i++)
+        //{
+        //    cTest = ObjectManager.instance.MakeObj("sin");
+        //    cTest.transform.position = new Vector2((Mathf.PI*5.0f / ballNum * i) - 8.0f, 0);
+        //    circles.Add(cTest);
+        //    yield return new WaitForSeconds(0.01f);
+        //}
         //for (int i = 0; i <= ballNum; i++)
         //{
         //    cTest = ObjectManager.instance.MakeObj("cos");
@@ -37,15 +37,37 @@ public class PatternManager : MonoBehaviour
         //    circles.Add(cTest);
         //    yield return new WaitForSeconds(0.01f);
         //}
+        //for (int i = 0; i <= ballNum; i++)
+        //{
+        //    cTest = ObjectManager.instance.MakeObj("ln");
+        //    cTest.transform.position = new Vector2((Mathf.PI * 5.0f / ballNum * i) - 8.0f, 0);
+        //    circles.Add(cTest);
+        //    yield return new WaitForSeconds(0.01f);
+        //}
+        for (int i = 0; i <= ballNum; i++)
+        {
+            cTest = ObjectManager.instance.MakeObj("ex");
+            cTest.transform.position = new Vector2((Mathf.PI * 5.0f / ballNum * i) - 8.0f, 0);
+            circles.Add(cTest);
+            yield return new WaitForSeconds(0.01f);
+        }
     }
 
 
     void Update() //임시 함수테스트코드
     {
         if (Input.GetKeyDown(KeyCode.A))
+        {
             Xsin();
+        }
         //if (Input.GetKeyDown(KeyCode.B))
+        //{
 
+        //}
+        //if (Input.GetKeyDown(KeyCode.B))
+        //{
+
+        //}
     }
 
     void Xsin()

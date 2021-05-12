@@ -9,11 +9,15 @@ public class ObjectManager : MonoBehaviour
 
     public GameObject sinPrefab;
     public GameObject cosPrefab;
+    public GameObject lnPrefab;
+    public GameObject exPrefab;
 
     public Transform[] parentObj; // 관리를 위한 임시 부모 오브젝트
 
     GameObject[] sin;
     GameObject[] cos;
+    GameObject[] ln;
+    GameObject[] ex;
 
     GameObject[] targetPool; // 풀링할 타겟 설정
 
@@ -28,6 +32,8 @@ public class ObjectManager : MonoBehaviour
 
         sin = new GameObject[55];
         cos = new GameObject[55];
+        ln = new GameObject[55];
+        ex = new GameObject[55];
 
         StartCoroutine("Generate");
         DontDestroyOnLoad(gameObject);
@@ -52,6 +58,20 @@ public class ObjectManager : MonoBehaviour
             cos[i].SetActive(false);
             //yield return new WaitForSeconds(0.001f);
         }
+        for (int i = 0; i < ln.Length; i++)
+        {
+            ln[i] = Instantiate(lnPrefab);
+            ln[i].transform.SetParent(parentObj[2]);
+            ln[i].SetActive(false);
+            //yield return new WaitForSeconds(0.001f);
+        }
+        for (int i = 0; i < ex.Length; i++)
+        {
+            ex[i] = Instantiate(exPrefab);
+            ex[i].transform.SetParent(parentObj[3]);
+            ex[i].SetActive(false);
+            //yield return new WaitForSeconds(0.001f);
+        }
         Time.timeScale = 1.0f;
         yield return new WaitForSeconds(0.001f);
         loading.SetActive(false);
@@ -67,6 +87,12 @@ public class ObjectManager : MonoBehaviour
                 break;
             case "cos":
                 targetPool = cos;
+                break;
+            case "ln":
+                targetPool = ln;
+                break;
+            case "ex":
+                targetPool = ex;
                 break;
         }
         for (int i = 0; i < targetPool.Length; i++)
