@@ -34,13 +34,14 @@ public class eXbullet : BulletType
     {
         float num = curPos.x + 1;
         float jupsunY;
-        jupsunY = 0.001f*((Mathf.Exp(curPos.x)-4) + (Mathf.Exp(num))-4);
+        jupsunY = 0.001f*((2*(Mathf.Exp(num))-8));
         //접점을 (t e^(t)-4)라 하고, 임의의 점의 x좌표를 t+1으로 두자.(점간의 벡터거리 구하기 위함)
         //원함수 : y=0.25*{e^ (x+8)-4}
         //접선 방정식 : y = 0.25*[{ e^(t+8)-4} * (x-t) + {e^(t+8)-4}]
+        // x=t+1 대입시 y=0.25*(2*(e^(t+8)-4))
         Vector2 jupsunPos = new Vector2(num, jupsunY); // 접선을 지나는 한 점
         Vector2 dirVec = (jupsunPos - curPos).normalized;
-        startPos = new Vector2(curPos.x - 8, curPos.y+4); // 현재 위치(smoothmove에서 평행이동되었음을 고려하여, -8을 하여 보정해줌)
+        startPos = new Vector2(curPos.x - 8, curPos.y+4); // 현재 위치(smoothmove에서 평행이동되었음을 고려하여, (-8,+4)을 하여 보정해줌)
         StartCoroutine(LineExpand(dirVec));
     }
 
