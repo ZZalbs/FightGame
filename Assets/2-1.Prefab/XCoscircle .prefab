@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2068611840377044576}
   - component: {fileID: 5597638522073031563}
-  - component: {fileID: -207577910009775878}
+  - component: {fileID: 2550831900701130991}
   - component: {fileID: 889788369696287134}
-  - component: {fileID: -2665543170386652654}
+  - component: {fileID: -280889061336328985}
   m_Layer: 0
-  m_Name: eXCircle
+  m_Name: 'XCoscircle '
   m_TagString: die
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: be65d181932427b44bec876194e0e419, type: 3}
-  m_Color: {r: 1, g: 0.9483466, b: 0.23137254, a: 1}
+  m_Color: {r: 1, g: 0.23137254, b: 0.2789525, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-207577910009775878
+--- !u!114 &2550831900701130991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6254100760666712704}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96dbb0cd9b58b3e428e3615fc3e77793, type: 3}
+  m_Script: {fileID: 11500000, guid: fa93ca6917e794148901a35dfd4ed1c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!120 &889788369696287134
@@ -197,7 +197,7 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!58 &-2665543170386652654
+--- !u!58 &-280889061336328985
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

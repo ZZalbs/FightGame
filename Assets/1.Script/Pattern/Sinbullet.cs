@@ -2,43 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sinbullet : BulletType
+public class SinBullet : BulletType
 {
 
-    float xJul;
+    float xChange; // 평행이동 x값 넣어줄것
+    float yline; // y축을 위아래로 바꿔줄라고 만든 기준축
 
     public override void MovePos()
     {
         if(gameObject.activeSelf)
             StartCoroutine(SmoothMove());
+        yline = curPos.y;
+        xChange = curPos.x + 8; // 도형에서 평행이동한 x값(화면 왼쪽이 원점)
     }
 
     IEnumerator SmoothMove()
     {
         curPos = gameObject.transform.position;
-        for (int i = 0; i <= 10; i++)
+        
+        for (int i = 0; i <= 20; i++)
         {
-            xJul = curPos.x+8; // 도형에서 평행이동한 x값(화면 왼쪽이 원점)
-            gameObject.transform.position = Vector2.Lerp(curPos, new Vector2(curPos.x,  0.25f* xJul * Mathf.Sin(xJul)), 0.1f * i);
+            gameObject.transform.position = Vector2.Lerp(curPos, new Vector2(curPos.x,  Mathf.Sin(xChange)+yline), 0.05f * i);
             // y = x * sin(x)
             yield return new WaitForSeconds(0.05f);
         }
-        curPos = new Vector2(xJul, gameObject.transform.position.y);
-        yield return new WaitForSeconds((curPos.x)*0.2f);
-        LineSlide();
+        //curPos = new Vector2(xChange, gameObject.transform.position.y);
+        yield return new WaitForSeconds(0.4f);
+        StartCoroutine(ChangetoCos());
     }
 
-    public override void LineSlide() //접선 패턴
+    IEnumerator ChangetoCos()
     {
-        float num = curPos.x + 1;
-        float jupsunY = (0.25f * (Mathf.Sin(curPos.x) + (curPos.x) * Mathf.Cos(curPos.x))) + (0.25f * (curPos.x) * Mathf.Sin(curPos.x));
-        //접점을 (t,t sin(t))라 하고, 임의의 점의 x좌표를 t+1으로 두자.(점간의 벡터거리 구하기 위함)
-        //원함수 : y=0.25*{(x-8) sin (x-8)}
-        //접선 방정식 : y = 0.25*[{ sin(t+8) +(t+8)*cos(t+8)  } * (x-t) + {(t+8)*sin(t+8)}]
-        Vector2 jupsunPos = new Vector2(num, jupsunY); // 접선을 지나는 한 점
-        Vector2 dirVec = (jupsunPos - curPos).normalized;
-        startPos = new Vector2(curPos.x - 8, curPos.y); // 현재 위치(smoothmove에서 평행이동되었음을 고려하여, -8을 하여 보정해줌)
-        StartCoroutine(LineExpand(dirVec));
+        curPos = gameObject.transform.position;
+        for (int i = 0; i <= 20; i++)
+        {
+            gameObject.transform.position = Vector2.Lerp(curPos, new Vector2(curPos.x, (-1)*Mathf.Sin(xChange)+yline), 0.05f * i);
+            // y = cos(x)
+            yield return new WaitForSeconds(0.05f);
+        }
+        //curPos = new Vector2(xChange, gameObject.transform.position.y);
+        yield return new WaitForSeconds(0.4f);
+        StartCoroutine(SmoothMove());
     }
-
 }

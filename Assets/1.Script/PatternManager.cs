@@ -23,6 +23,23 @@ public class PatternManager : MonoBehaviour
 
     IEnumerator SinBallmake()
     {
+        for (int i = 0; i <= ballNum; i++)
+        {
+            cTest = ObjectManager.instance.MakeObj("sin");
+            cTest.transform.position = new Vector2((Mathf.PI * 5.0f / ballNum * i) - 8.0f, 3);
+            circles.Add(cTest);
+            cTest = ObjectManager.instance.MakeObj("sin");
+            cTest.transform.position = new Vector2((Mathf.PI * 5.0f / ballNum * i) - 8.0f, 0);
+            circles.Add(cTest);
+            cTest = ObjectManager.instance.MakeObj("sin");
+            cTest.transform.position = new Vector2((Mathf.PI * 5.0f / ballNum * i) - 8.0f, -3);
+            circles.Add(cTest);
+            yield return new WaitForSeconds(0.01f);
+        }
+
+
+
+
         //for (int i = 0; i <= ballNum; i++)
         //{
         //    cTest = ObjectManager.instance.MakeObj("sin");
@@ -44,13 +61,13 @@ public class PatternManager : MonoBehaviour
         //    circles.Add(cTest);
         //    yield return new WaitForSeconds(0.01f);
         //}
-        for (int i = 0; i <= ballNum; i++)
-        {
-            cTest = ObjectManager.instance.MakeObj("ex");
-            cTest.transform.position = new Vector2((Mathf.PI * 5.0f / ballNum * i) - 8.0f, 0);
-            circles.Add(cTest);
-            yield return new WaitForSeconds(0.01f);
-        }
+        //for (int i = 0; i <= ballNum; i++)
+        //{
+        //    cTest = ObjectManager.instance.MakeObj("ex");
+        //    cTest.transform.position = new Vector2((Mathf.PI * 5.0f / ballNum * i) - 8.0f, 0);
+        //    circles.Add(cTest);
+        //    yield return new WaitForSeconds(0.01f);
+        //}
     }
 
 

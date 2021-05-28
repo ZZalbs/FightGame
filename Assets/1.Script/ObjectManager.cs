@@ -8,14 +8,16 @@ public class ObjectManager : MonoBehaviour
     public GameObject loading;
 
     public GameObject sinPrefab;
-    public GameObject cosPrefab;
+    public GameObject xSinPrefab;
+    public GameObject xCosPrefab;
     public GameObject lnPrefab;
     public GameObject exPrefab;
 
     public Transform[] parentObj; // 관리를 위한 임시 부모 오브젝트
 
     GameObject[] sin;
-    GameObject[] cos;
+    GameObject[] xSin;
+    GameObject[] xCos;
     GameObject[] ln;
     GameObject[] ex;
 
@@ -30,8 +32,9 @@ public class ObjectManager : MonoBehaviour
         if(instance != this)
             instance = this;
 
-        sin = new GameObject[55];
-        cos = new GameObject[55];
+        sin = new GameObject[100];
+        xSin = new GameObject[55];
+        xCos = new GameObject[55];
         ln = new GameObject[55];
         ex = new GameObject[55];
 
@@ -51,24 +54,31 @@ public class ObjectManager : MonoBehaviour
             sin[i].SetActive(false);
             //yield return new WaitForSeconds(0.001f);
         }
-        for (int i = 0; i < cos.Length; i++)
+        for (int i = 0; i < xSin.Length; i++)
         {
-            cos[i] = Instantiate(cosPrefab);
-            cos[i].transform.SetParent(parentObj[1]);
-            cos[i].SetActive(false);
+            xSin[i] = Instantiate(xSinPrefab);
+            xSin[i].transform.SetParent(parentObj[1]);
+            xSin[i].SetActive(false);
+            //yield return new WaitForSeconds(0.001f);
+        }
+        for (int i = 0; i < xCos.Length; i++)
+        {
+            xCos[i] = Instantiate(xCosPrefab);
+            xCos[i].transform.SetParent(parentObj[2]);
+            xCos[i].SetActive(false);
             //yield return new WaitForSeconds(0.001f);
         }
         for (int i = 0; i < ln.Length; i++)
         {
             ln[i] = Instantiate(lnPrefab);
-            ln[i].transform.SetParent(parentObj[2]);
+            ln[i].transform.SetParent(parentObj[3]);
             ln[i].SetActive(false);
             //yield return new WaitForSeconds(0.001f);
         }
         for (int i = 0; i < ex.Length; i++)
         {
             ex[i] = Instantiate(exPrefab);
-            ex[i].transform.SetParent(parentObj[3]);
+            ex[i].transform.SetParent(parentObj[4]);
             ex[i].SetActive(false);
             //yield return new WaitForSeconds(0.001f);
         }
@@ -82,11 +92,14 @@ public class ObjectManager : MonoBehaviour
     {
         switch(type)
         {
-            case "sin" :
+            case "sin":
                 targetPool = sin;
                 break;
-            case "cos":
-                targetPool = cos;
+            case "xSin" :
+                targetPool = xSin;
+                break;
+            case "xCos":
+                targetPool = xCos;
                 break;
             case "ln":
                 targetPool = ln;

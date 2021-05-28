@@ -43,15 +43,23 @@ public class PlayerControl : MonoBehaviour
             v = 0;
 
         nextPos = new Vector3(h, v, 0) * speed * Time.deltaTime;
-
-        transform.position = curPos + nextPos;
+        Vector2 finalPos = curPos + nextPos;
+        if (finalPos.y > 4.5)
+            finalPos = new Vector2(finalPos.x, 4.5f);
+        if (finalPos.y < -4.5)
+            finalPos = new Vector2(finalPos.x, -4.5f);
+        if (finalPos.x > 8)
+            finalPos = new Vector2(8, finalPos.y);
+        if (finalPos.x < -8)
+            finalPos = new Vector2(-8, finalPos.y);
+        transform.position = finalPos;
     }
 
     IEnumerator Dash()
     {
         isDashing = true;
         speed = dashSpeed;
-        yield return new WaitForSeconds(0.015f);
+        yield return new WaitForSeconds(0.010f);
         speed = normalSpeed;
         yield return new WaitForSeconds(0.2f);
         isDashing = false;
